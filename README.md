@@ -5,7 +5,7 @@
 参数：
 account			//账号				
 userName		//姓名
-sex				//性别
+sex				//性别(int) 1男 0女
 companyId		//公司id
 status			//状态
 departmentName	//部门名称
