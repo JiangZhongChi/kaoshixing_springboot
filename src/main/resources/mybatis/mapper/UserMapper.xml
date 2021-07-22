@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kaoshixing_springboot.mapper.UserMapper">
+    <insert id="adduser" parameterType="User">
+        INSERT INTO `user` (id,account,name,sex,company_id,create_time,update_time,status)
+        VALUES (#{id},#{account},#{name},#{sex},#{companyId},#{createTime},#{updateTime},#{status})
+    </insert>
+
+    <select id="queryMaxId" resultType="Integer">
+        SELECT id FROM `user` ORDER BY id DESC LIMIT 1
+    </select>
+
+    <select id="queryUserById" resultType="User">
+        SELECT * FROM `user` WHERE id = #{id}
+    </select>
+
+    <select id="queryUserByNameLikeDesc" resultType="User">
+        SELECT * FROM `user` WHERE name LIKE concat('%',#{nameLike},'%') ORDER BY update_time DESC
+    </select>
+    <select id="queryUserByNameLikeDescLimit" resultType="User">
+        SELECT * FROM `user` WHERE name LIKE concat('%',#{nameLike},'%') ORDER BY update_time DESC limit #{pageNo},#{pageSize}
+    </select>
+
+    <update id="updateUserUpdateTimeById" parameterType="Integer">
+        UPDATE `user` SET update_time = CURRENT_TIMESTAMP WHERE `id` = #{id};
+    </update>
+
+</mapper>

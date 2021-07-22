@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kaoshixing_springboot.mapper.DepartmentUserMapper">
+    <insert id="adddepartmentUser" parameterType="DepartmentUser">
+        INSERT INTO `department_user` (id,company_id,department_id,user_id,status)
+        VALUES (#{id},#{companyId},#{departmentId},#{userId},#{status})
+    </insert>
+    <select id="queryUserIdByDepartmentId" resultType="Integer">
+        SELECT user_id FROM department_user WHERE department_id = #{departmentId}
+    </select>
+    <select id="queryUserIdByDepartmentIdLimit" resultType="Integer">
+        SELECT user_id FROM department_user WHERE department_id = #{departmentId} limit #{pageNo},#{pageSize}
+    </select>
+    <update id="updateDepertmentUser" parameterType="Integer">
+        UPDATE department_user SET department_id = #{departmentId} WHERE user_id = #{userId}
+    </update>
+</mapper>
